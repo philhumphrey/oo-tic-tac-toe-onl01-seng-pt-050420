@@ -48,18 +48,18 @@ end
   !position_taken?(index) && index.between?(0,8)
   end
 
+#   # def turn_count
+#     turn = 0
+#   @board.each do |index|
+#     if index == "X" || index == "O"
+#       turn += 1
+#     end
+#   end
+#   return turn
+# end
   def turn_count
-    turn = 0
-  @board.each do |index|
-    if index == "X" || index == "O"
-      turn += 1
-    end
+    @board.count {|position| position != " "}
   end
-  return turn
-end
-  # def turn_count
-  #   @board.count {|position| position != " "}
-  # end
   
   
   # def current_player
@@ -116,12 +116,13 @@ end
   end
 
   def full?
-     @board.all? {|index| index == "X" || index == "O"}
-    # turn_count == 9
+    @board.all? {|index| index == "X" || index == "O"}
+    # turn_count == 9 
+    # @board.all? {|full| full!= " "}
   end
 
   def draw?
-  if full? && !won?
+  if (full?) && !(won?)
     return true
   else
     return false
